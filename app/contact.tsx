@@ -311,7 +311,7 @@ export default function Contact() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-thirdary flex items-center justify-center text-text-primary font-black border border-text-secondary/10">AI</div>
               <div>
-                <h3 className="text-lg font-black text-text-primary tracking-tight leading-none">Aulia Assistant</h3>
+                <h3 className="text-lg font-black text-text-primary tracking-tight leading-none">Restu's Assistant</h3>
                 <span className="text-xs text-green-500 font-bold flex items-center gap-1 mt-1">
                   <span className="w-2 h-2 rounded-full bg-green-500 block animate-pulse"></span> Online
                 </span>
