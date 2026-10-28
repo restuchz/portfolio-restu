@@ -63,7 +63,7 @@ export default function About() {
                 <FadeLeft delay={0.1}>
                   <div className="flex flex-col p-2 -m-2 rounded-xl transition-colors duration-300 hover:bg-thirdary/40">
                     <span className="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1">Name</span>
-                    <span className="text-base font-semibold text-text-primary">Muhamma Restu Rahman</span>
+                    <span className="text-base font-semibold text-text-primary">Muhammad Restu Rahman</span>
                   </div>
                 </FadeLeft>
 

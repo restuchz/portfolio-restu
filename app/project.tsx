@@ -28,13 +28,19 @@ const ExternalIcon = () => (
 function ProjectCard({ project, onOpen }: { project: ProjectItem; onOpen: (index: number) => void }) {
   return (
     <GlareHover className="group flex flex-col h-full bg-background border border-text-secondary/20 hover:border-text-primary/50 rounded-xl overflow-hidden transition-all duration-500 shadow-sm hover:shadow-2xl">
-      {/* Cover gradient (pengganti foto) */}
-      <div className="relative overflow-hidden aspect-[16/10] border-b border-text-secondary/10">
+      {/* Cover gradient gelap & transparan */}
+      <div className="relative overflow-hidden aspect-[16/10] border-b border-text-secondary/10 bg-black/40">
         <div className={`absolute inset-0 ${project.gradient} transition-transform duration-700 group-hover:scale-110`} />
-        <div className="absolute -top-10 -left-10 w-40 h-40 rounded-full bg-white/15 blur-2xl" />
-        <div className="absolute -bottom-12 -right-8 w-48 h-48 rounded-full bg-black/20 blur-2xl" />
-        <div className="absolute bottom-4 left-5 text-white/90 text-3xl md:text-4xl font-black tracking-tighter drop-shadow-sm select-none">{project.category}</div>
+        
+        {/* Overlay Gelap Transparan agar tidak mencolok */}
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
 
+        <div className="absolute -top-10 -left-10 w-40 h-40 rounded-full bg-white/5 blur-3xl" />
+        <div className="absolute -bottom-12 -right-8 w-48 h-48 rounded-full bg-black/40 blur-3xl" />
+        
+<div className="absolute inset-0 flex items-center justify-center text-white/30 text-3xl md:text-4xl font-black uppercase tracking-widest select-none pointer-events-none z-10">
+  {project.category}
+</div>
         {/* Tech Stack Overlay */}
         <div className="absolute top-4 right-4 flex flex-wrap gap-2 justify-end z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-[-10px] group-hover:translate-y-0">
           {project.tech.slice(0, 3).map((tech, i) => (
@@ -57,7 +63,7 @@ function ProjectCard({ project, onOpen }: { project: ProjectItem; onOpen: (index
         <p className="text-sm text-text-secondary font-medium leading-relaxed mb-8 flex-grow line-clamp-3">{project.shortDescription}</p>
 
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-text-secondary/10">
-          <button className="text-xs font-bold tracking-[0.2em] uppercase text-text-primary flex items-center gap-3 group/btn" onClick={() => onOpen(project.index)}>
+          <button className="text-xs font-bold tracking-[0.2em] uppercase text-text-primary flex items-center gap-3 group/btn cursor-pointer" onClick={() => onOpen(project.index)}>
             View Details
             <span className="w-8 h-[2px] bg-text-primary group-hover/btn:w-12 transition-all duration-300"></span>
           </button>
@@ -152,7 +158,7 @@ export default function Project() {
                 {/* Modal Header */}
                 <div className="flex justify-between items-center p-6 border-b border-text-secondary/10">
                   <h4 className="text-2xl font-black text-text-primary tracking-tight pr-4">{activeProject.title}</h4>
-                  <button className="text-text-secondary hover:text-text-primary transition-colors p-2 bg-text-secondary/5 rounded-full" onClick={() => setIsOpen(null)}>
+                  <button className="text-text-secondary hover:text-text-primary transition-colors p-2 bg-text-secondary/5 rounded-full cursor-pointer" onClick={() => setIsOpen(null)}>
                     <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
@@ -218,7 +224,7 @@ export default function Project() {
 const projectList: ProjectItem[] = [
   {
     index: 0,
-    gradient: "bg-linear-to-br from-violet-600 via-purple-600 to-indigo-700",
+    gradient: "bg-linear-to-br from-violet-950 via-purple-950 to-indigo-950 opacity-60",
     category: "Web",
     title: "Website Media Pembelajaran Bootstrap",
     shortDescription: "Website media pembelajaran materi framework CSS Bootstrap dengan model tutorial, dilengkapi gamifikasi, autentikasi pengguna, dan fitur CRUD. Dibuat sebagai Tugas Akhir.",
@@ -230,7 +236,7 @@ const projectList: ProjectItem[] = [
   },
   {
     index: 1,
-    gradient: "bg-linear-to-br from-emerald-500 via-teal-500 to-cyan-600",
+    gradient: "bg-linear-to-br from-emerald-950 via-teal-950 to-cyan-950 opacity-60",
     category: "Data",
     title: "Clustering Iris dengan K-Means",
     shortDescription: "Pengelompokan 150 sampel bunga Iris ke dalam 3 cluster dengan algoritma K-Means, lengkap dengan visualisasi dan evaluasi hasil. Project Mata Kuliah Sains Data.",
@@ -242,7 +248,7 @@ const projectList: ProjectItem[] = [
   },
   {
     index: 2,
-    gradient: "bg-linear-to-br from-sky-500 via-blue-500 to-indigo-500",
+    gradient: "bg-linear-to-br from-sky-950 via-blue-950 to-indigo-950 opacity-60",
     category: "Web",
     title: "Website Pengaduan Mahasiswa",
     shortDescription: "Website pengaduan mahasiswa yang dibangun dengan Laravel dan MySQL, dengan antarmuka interaktif dan autentikasi pengguna. Project Mata Kuliah Pemrograman Website 2.",
@@ -254,7 +260,7 @@ const projectList: ProjectItem[] = [
   },
   {
     index: 3,
-    gradient: "bg-linear-to-br from-amber-400 via-orange-500 to-red-500",
+    gradient: "bg-linear-to-br from-amber-950 via-orange-950 to-red-950 opacity-60",
     category: "Web",
     title: "Aplikasi Agenda Berbasis Website",
     shortDescription: "Website agenda dengan penyimpanan data menggunakan Firebase, dikerjakan dalam tim tiga orang. Project Mata Kuliah Pemrograman Web 1 dengan nilai akhir A.",
@@ -266,7 +272,7 @@ const projectList: ProjectItem[] = [
   },
   {
     index: 4,
-    gradient: "bg-linear-to-br from-fuchsia-500 via-pink-500 to-rose-500",
+    gradient: "bg-linear-to-br from-fuchsia-950 via-pink-950 to-rose-950 opacity-60",
     category: "3D",
     title: "3D Logo Design & Motion Graphic",
     shortDescription: "Perancangan logo 3D dan motion graphic untuk kebutuhan branding klien, mulai dari bentuk, pencahayaan, hingga efek material. Project freelance berbayar.",
@@ -279,7 +285,7 @@ const projectList: ProjectItem[] = [
   },
   {
     index: 5,
-    gradient: "bg-linear-to-br from-pink-500 via-rose-500 to-red-500",
+    gradient: "bg-linear-to-br from-pink-950 via-rose-950 to-red-950 opacity-60",
     category: "Design",
     title: "Graphic Design Gallery",
     shortDescription: "Kumpulan karya desain grafis dan visual branding dalam bentuk galeri foto interaktif.",

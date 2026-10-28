@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-center md:text-left">
           <p className="text-sm font-medium text-text-secondary">
-            &copy; {currentYear} Muhammad Restu Ragman All rights reserved.
+            &copy; {currentYear} Muhammad Restu Rahman All rights reserved.
           </p>
           <p className="text-xs font-medium text-text-secondary/70 mt-1">
             Built with Next.js & Tailwind CSS

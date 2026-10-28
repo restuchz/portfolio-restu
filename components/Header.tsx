@@ -152,9 +152,15 @@ const shortCut = [
     name: "Experience",
     link: "experience",
   },
+  { name: "Certificates",
+    link: "certificates" },
   {
     name: "Projects",
     link: "projects",
+  },
+  {
+    name: "Gallery",
+    link: "gallery", // Menambahkan section gallery di landing page
   },
   {
     name: "Contacts",

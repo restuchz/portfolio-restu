@@ -291,13 +291,19 @@ export default function GalleryPage() {
         onClick={() => setSelectedImage(item)}
         >
             <div className="relative aspect-[4/5] w-full overflow-hidden flex items-center justify-center bg-black/10">
-            {item.isVideo ? (
+                {item.isVideo ? (
                 <video
                 src={item.imageUrl}
                 muted
                 loop
                 playsInline
-                onMouseEnter={(e) => e.currentTarget.play()}
+                preload="metadata"
+                onMouseEnter={(e) => {
+                    const playPromise = e.currentTarget.play()
+                    if (playPromise !== undefined) {
+                      playPromise.catch(() => {})
+                    }
+                }}
                 onMouseLeave={(e) => {
                     e.currentTarget.pause()
                     e.currentTarget.currentTime = 0
@@ -366,11 +372,18 @@ export default function GalleryPage() {
 
         {/* Area Media Modal (Gambar / Video) */}
         <div className="flex-1 bg-black/5 dark:bg-white/5 flex items-center justify-center p-4 overflow-hidden transition-colors duration-300">
-          {selectedImage.isVideo ? (
+            {selectedImage.isVideo ? (
             <video
               src={selectedImage.imageUrl}
               controls
-              autoPlay
+              preload="metadata"
+              playsInline
+              onCanPlay={(e) => {
+                const playPromise = e.currentTarget.play()
+                if (playPromise !== undefined) {
+                  playPromise.catch(() => {})
+                }
+              }}
               className="max-h-[75vh] w-auto object-contain rounded-xl shadow-inner"
             />
           ) : (
