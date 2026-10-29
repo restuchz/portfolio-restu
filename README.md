@@ -26,7 +26,7 @@ First, clone the repository and install the dependencies:
 
 ```bash
 # Clone the repository
-git clone [https://github.com/restuchz/portofoliov2.git](https://github.com/restuchz/portofoliov2.git)
+git clone [https://github.com/restuchz/portofolio-restu.git](https://github.com/restuchz/portofoliov2.git)
 
 # Navigate to the project directory
 cd portofoliov2
