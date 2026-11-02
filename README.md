@@ -4,7 +4,7 @@ A modern, interactive, and responsive personal portfolio website built to showca
 
 ## 🌐 Live Demo
 
-Check out the live website here: **[https://resturhmn.vercel.app/](https://resturhmn.me/)**
+Check out the live website here: **[https://resturhmn.me/](https://resturhmn.me/)**
 
 ## 🚀 Features
 
