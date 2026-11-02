@@ -4,7 +4,7 @@ A modern, interactive, and responsive personal portfolio website built to showca
 
 ## 🌐 Live Demo
 
-Check out the live website here: **[https://resturhmn.vercel.app/](https://resturhmn.vercel.app/)**
+Check out the live website here: **[https://resturhmn.me/](https://resturhmn.me/)**
 
 ## 🚀 Features
 
@@ -26,10 +26,10 @@ First, clone the repository and install the dependencies:
 
 ```bash
 # Clone the repository
-git clone [https://github.com/restuchz/portofolio-restu.git](https://github.com/restuchz/portofoliov2.git)
+git clone [https://github.com/restuchz/portofolio-restu.git](https://github.com/restuchz/portofolio-restu.git)
 
 # Navigate to the project directory
-cd portofoliov2
+cd portfolio-restu
 
 # Install dependencies
 npm install
