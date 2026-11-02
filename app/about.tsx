@@ -42,14 +42,14 @@ export default function About() {
               <div className="flex flex-col">
                 <Fade>
                   <h4 className="text-lg md:text-xl font-bold text-text-primary mb-4 flex items-center border-b border-text-secondary/20 pb-4">Who Am I</h4>
-                  <p className="text-base text-text-secondary leading-relaxed font-medium">Saya lulusan S1 Pendidikan Komputer Universitas Lambung Mangkurat yang berfokus pada pengembangan website (front-end dan back-end), UI/UX design, dan desain grafis. Saya bersertifikat Junior Web Programming BNSP, berpengalaman membangun website dengan PHP, Laravel, dan MySQL, serta merancang antarmuka di Figma dan aset visual seperti logo 3D, poster, dan banner.</p>
+                  <p className="md:text-justify text-base text-text-secondary leading-relaxed font-medium">Saya lulusan S1 Pendidikan Komputer Universitas Lambung Mangkurat yang berfokus pada pengembangan website (front-end dan back-end), UI/UX design, dan desain grafis. Saya bersertifikat Junior Web Programming BNSP, berpengalaman membangun website dengan PHP, Laravel, dan MySQL, serta merancang antarmuka di Figma dan aset visual seperti logo 3D, poster, dan banner.</p>
                 </Fade>
               </div>
               
               <div className="flex flex-col">
                 <Fade>
                   <h4 className="text-lg md:text-xl font-bold text-text-primary mb-4 flex items-center border-b border-text-secondary/20 pb-4">My Approach</h4>
-                  <p className="text-base text-text-secondary leading-relaxed font-medium">Saya senang memadukan sisi teknis dan visual: membangun fungsionalitas yang rapi sekaligus tampilan yang menarik dan nyaman digunakan. Latar belakang di bidang pendidikan membantu saya menjelaskan hal kompleks dengan sederhana, bekerja sama dalam tim, dan terus belajar, terutama di Web Development, Cloud Computing, dan Machine Learning.</p>
+                  <p className="md:text-justify text-base text-text-secondary leading-relaxed font-medium">Saya senang memadukan sisi teknis dan visual: membangun fungsionalitas yang rapi sekaligus tampilan yang menarik dan nyaman digunakan. Latar belakang di bidang pendidikan membantu saya menjelaskan hal kompleks dengan sederhana, bekerja sama dalam tim, dan terus belajar, terutama di Web Development, Cloud Computing, dan Machine Learning.</p>
                 </Fade>
               </div>
             </div>
@@ -77,7 +77,7 @@ export default function About() {
                 <FadeLeft delay={0.3}>
                   <div className="flex flex-col p-2 -m-2 rounded-xl transition-colors duration-300 hover:bg-thirdary/40">
                     <span className="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1">Phone</span>
-                    <span className="text-base font-semibold text-text-primary">+62 856-517-43662</span>
+                    <span className="text-base font-semibold text-text-primary">+62 856-5217-4366</span>
                   </div>
                 </FadeLeft>
 

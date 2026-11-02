@@ -15,7 +15,7 @@ interface GalleryItem {
 }
 
 // 2. Daftar Kategori Filter
-const CATEGORIES = ["All", "Logo", "T-Shirt Design", "Random Design", "Poster", "3D Logo"]
+const CATEGORIES = ["All", "Logo", "T-Shirt Design", "Random Design", "Poster", "3D Logo", "Mockup",]
 
 // 3. Data Galeri (Diisi dari karya Padlet Anda)
 export const galleryData: GalleryItem[] = [
@@ -43,7 +43,25 @@ export const galleryData: GalleryItem[] = [
     category: "Logo",
     imageUrl: "https://u1.padletusercontent.com/uploads/padlet-uploads/2295710792/257433238dd41150e3df7b3ed4675d92/Untitled.png?token=QGzSW3EmZkfNaPEhXIzj0MYT9UuD91mEb9YPqHw_xHFeCPmgrLrRtL2ZAhmw8PdwMNTLe1N_wbHl5BCzdRet8ZjBfSMZ2QSrTf7ix9QpskLHd6wFKgpKZu2tNd9bT1OJUEpDmBOVZU2cjk8QPp_UG6jnWjNoCJb1lreSC3NSO8DYqznp1nvDBGBxlnqg7pXuCbfM8z4v3v8OTLTfzLE8Adf90WiNBnJ1jTQXeag29ewu9O0HCEZg-urM-X0n6v9X",
   },
-
+// --- KATEGORI: MOCKUP (Baru Ditambahkan) ---
+  {
+    id: "mockup-1",
+    title: "Mockup 8Ball",
+    category: "Mockup",
+    imageUrl: "https://u1.padletusercontent.com/uploads/padlet-uploads-usc1/2295710792/a2f2a4d3dcab7674aea4be908a9c9c48/8ball.png?token=QGzSW3EmZkfNaPEhXIzj0MYT9UuD91mEb9YPqHw_xHFeCPmgrLrRtL2ZAhmw8PdwwqJRVqiq-Esv5fBNL6ZnE8pzCxXa3Wc6iqL2ptM_siSLxF3K83lawhirN6CR2eIrZbH5IHGeHiVp19v93YrTKhOCY-G3oxURpw_jxGDOpGzf4hjAEI00OUdmFE3rmZU-TC5yEa9bKHubQb9M4-8WFjPiYlMEQx1cEQm8ecEv47UyFS3qpu3s_rtK5vuAZOx8",
+  },
+  {
+    id: "mockup-2",
+    title: "Mockup PB",
+    category: "Mockup",
+    imageUrl: "https://u1.padletusercontent.com/uploads/padlet-uploads-usc1/2295710792/575acd32de67c2547e9cd71bd850fb0f/pb.png?token=QGzSW3EmZkfNaPEhXIzj0MYT9UuD91mEb9YPqHw_xHFeCPmgrLrRtL2ZAhmw8PdwwqJRVqiq-Esv5fBNL6ZnE8pzCxXa3Wc6iqL2ptM_siSLxF3K83lawhirN6CR2eIrAWTg3dQx8JnIAuIQbvD7RYmxVv1n13EFEyzGGMRpo3mdUzOTZ1_W89oVGQk-fXoKJVAHVfnO9W1xSIU3yuO_mYBSxNrZz0NVi8D-_ZMZeoJcWjZAWugSGdK502fu0jo7",
+  },
+  {
+    id: "mockup-3",
+    title: "Valorant Mockup",
+    category: "Mockup",
+    imageUrl: "https://u1.padletusercontent.com/uploads/padlet-uploads-usc1/2295710792/3053911282761430af672f2657fed929/VALORANT_MOCKUP.png?token=QGzSW3EmZkfNaPEhXIzj0MYT9UuD91mEb9YPqHw_xHFeCPmgrLrRtL2ZAhmw8PdwwqJRVqiq-Esv5fBNL6ZnE8pzCxXa3Wc6iqL2ptM_siSLxF3K83lawhirN6CR2eIr9IwSoK9t1p0d9IV5Kk03Nf7qZnaLMxQORJTThVB_JCHlzLcHs4UsbPR63nvES_Jrs8QWbnq-IJRYasZhiga9svzEP6-2mSI9gPWJoaI2afar_doSV75QrJWYdP2q_HYg",
+  },
   {
     id: "tshirt-1",
     title: "T-Shirt Design 1",
@@ -243,7 +261,7 @@ export default function GalleryPage() {
             href="/#projects" 
             className="text-xs font-bold tracking-[0.2em] text-text-secondary uppercase hover:text-text-primary transition-colors mb-4 inline-block"
           >
-            &larr; Back to Portfolio
+            Back to Portfolio
           </Link>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase">
             Graphic Design <span className="text-text-secondary font-light">Gallery</span>

@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import FadeDown from "@/components/animations/FadeDown"
 import FadeUp from "@/components/animations/FadeUp"
@@ -18,83 +19,138 @@ const featuredIds = [
   "video-3",      // 3D Motion Render 02
 ]
 
+const arrowClass =
+  "p-3 border border-text-secondary/20 rounded-full text-text-primary hover:bg-text-primary hover:text-background hover:border-text-primary transition-all duration-300 disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+
 export default function GallerySection() {
+  const [canPrev, setCanPrev] = useState(false)
+  const [canNext, setCanNext] = useState(true)
+  const sliderRef = useRef<HTMLDivElement>(null)
+
   // Filter data agar hanya 9 item terpilih yang muncul di landing page
   const featuredItems = galleryData.filter((item) => featuredIds.includes(item.id))
+
+  const updateArrows = () => {
+    const el = sliderRef.current
+    if (!el) return
+    setCanPrev(el.scrollLeft > 4)
+    setCanNext(el.scrollLeft + el.clientWidth < el.scrollWidth - 4)
+  }
+
+  useEffect(() => {
+    updateArrows()
+    window.addEventListener("resize", updateArrows)
+    return () => window.removeEventListener("resize", updateArrows)
+  }, [])
+
+  const scrollSlider = (direction: 1 | -1) => {
+    const el = sliderRef.current
+    if (!el) return
+    const card = el.querySelector<HTMLElement>("[data-card]")
+    const step = card ? card.offsetWidth + 24 : el.clientWidth * 0.8
+    el.scrollBy({ left: direction * step, behavior: "smooth" })
+  }
 
   return (
     <section id="gallery" className="w-full max-w-7xl mx-auto py-24 md:py-32 cursor-default bg-background relative border-t border-text-secondary/10">
       
       {/* --- HEADER --- */}
       <FadeDown>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 md:mb-24 w-full text-left">
-          <h2 className="text-sm font-bold tracking-[0.2em] text-text-secondary uppercase mb-4">
-            Gallery
-          </h2>
-          <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-text-primary tracking-tighter">
-            Selected Design
-          </h3>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 md:mb-24 w-full flex items-end justify-between gap-6">
+          <div className="text-left">
+            <h2 className="text-sm font-bold tracking-[0.2em] text-text-secondary uppercase mb-4">
+              Gallery
+            </h2>
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-text-primary tracking-tighter">
+              Selected Design
+            </h3>
+          </div>
+
+          {/* Tombol geser kiri & kanan (hanya HP & tablet) */}
+          <div className="flex gap-3 flex-shrink-0 lg:hidden">
+            <button aria-label="Sebelumnya" disabled={!canPrev} onClick={() => scrollSlider(-1)} className={arrowClass}>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button aria-label="Berikutnya" disabled={!canNext} onClick={() => scrollSlider(1)} className={arrowClass}>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
       </FadeDown>
 
-      {/* --- GRID GALERI 3x3 (9 Item Terpilih) --- */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* --- HP & TABLET: slider manual | DESKTOP: grid 3 kolom --- */}
+      <div
+        ref={sliderRef}
+        onScroll={updateArrows}
+        className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-6 md:px-12 scroll-pl-6 md:scroll-pl-12 pt-4 pb-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:snap-none lg:pt-0 lg:pb-0"
+      >
         {featuredItems.map((item, index) => (
-          <FadeUp key={item.id || index}>
-            <div className="group relative cursor-pointer overflow-hidden rounded-xl bg-background border border-text-secondary/20 hover:border-text-primary/50 transition-all duration-500 shadow-sm hover:shadow-2xl flex flex-col h-full">
-              <div className="relative aspect-[4/5] w-full overflow-hidden flex items-center justify-center bg-text-secondary/5 border-b border-text-secondary/10">
-                {item.isVideo ? (
-                <video
-                    src={item.imageUrl}
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    onMouseEnter={(e) => {
-                    const playPromise = e.currentTarget.play()
-                    if (playPromise !== undefined) {
-                        playPromise.catch(() => {
-                        // Menangkap error pemutaran agar tidak menyebabkan crash/AbortError
-                        })
-                    }
-                    }}
-                    onMouseLeave={(e) => {
-                    e.currentTarget.pause()
-                    e.currentTarget.currentTime = 0
-                    }}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                ) : (
-                  <img
-                    src={item.imageUrl}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    loading="lazy"
-                  />
-                )}
+          <div
+            key={item.id || index}
+            data-card
+            className="w-[85vw] sm:w-[400px] flex-shrink-0 snap-start flex [&>*]:w-full lg:w-auto lg:flex-shrink"
+          >
+            <FadeUp>
+              <div className="group relative cursor-pointer overflow-hidden rounded-xl bg-background border border-text-secondary/20 hover:border-text-primary/50 transition-all duration-500 shadow-sm hover:shadow-2xl flex flex-col h-full w-full">
+                <div className="relative aspect-[4/5] w-full overflow-hidden flex items-center justify-center bg-text-secondary/5 border-b border-text-secondary/10">
+                  {item.isVideo ? (
+                    <video
+                      src={item.imageUrl}
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      onMouseEnter={(e) => {
+                        const playPromise = e.currentTarget.play()
+                        if (playPromise !== undefined) {
+                          playPromise.catch(() => {
+                            // Menangkap error pemutaran agar tidak menyebabkan crash/AbortError
+                          })
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.pause()
+                        e.currentTarget.currentTime = 0
+                      }}
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={item.imageUrl}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  )}
 
-                {item.isVideo && (
-                  <span className="absolute top-4 left-4 text-[10px] font-bold tracking-widest uppercase bg-background/90 text-text-primary px-2.5 py-1 rounded-md backdrop-blur-md border border-text-secondary/20 shadow-sm pointer-events-none">
-                    ▶ Video
-                  </span>
-                )}
+                  {item.isVideo && (
+                    <span className="absolute top-4 left-4 text-[10px] font-bold tracking-widest uppercase bg-background/90 text-text-primary px-2.5 py-1 rounded-md backdrop-blur-md border border-text-secondary/20 shadow-sm pointer-events-none">
+                      ▶ Video
+                    </span>
+                  )}
 
-                {/* Overlay saat Hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end text-white pointer-events-none">
-                  <span className="text-[10px] font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full w-fit mb-2">
-                    {item.category}
-                  </span>
-                  <h4 className="text-lg font-bold tracking-tight">{item.title}</h4>
+                  {/* Overlay saat Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end text-white pointer-events-none">
+                    <span className="text-[10px] font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full w-fit mb-2">
+                      {item.category}
+                    </span>
+                    <h4 className="text-lg font-bold tracking-tight">{item.title}</h4>
+                  </div>
                 </div>
               </div>
-            </div>
-          </FadeUp>
+            </FadeUp>
+          </div>
         ))}
       </div>
 
       {/* --- TOMBOL VIEW MORE WORKS --- */}
       <FadeUp>
-        <div className="mt-16 flex justify-center w-full px6 md:px-12">
+        <div className="mt-12 lg:mt-16 flex justify-center w-full px-6 md:px-12">
           <Link
             href="/gallery"
             className="inline-flex items-center gap-3 px-8 py-4 bg-background border border-text-secondary/20 text-text-primary hover:border-text-primary hover:bg-text-primary hover:text-background rounded-xl font-bold tracking-widest text-sm uppercase transition-all duration-300 ease-out group hover:-translate-y-1.5 hover:scale-[1.02] shadow-sm hover:shadow-xl cursor-pointer"

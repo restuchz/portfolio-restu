@@ -8,12 +8,12 @@ export default function PageLoader() {
   useEffect(() => {
     // Prevent scrolling while loading
     document.body.style.overflow = "hidden"
-    
+
     // Simulating initial load time for smooth entrance
     const timer = setTimeout(() => {
       setIsLoading(false)
       document.body.style.overflow = "unset"
-    }, 2000) // Adjust the loading time as necessary (2 seconds for demo)
+    }, 2000)
 
     return () => {
       clearTimeout(timer)
@@ -29,20 +29,20 @@ export default function PageLoader() {
           initial={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -100, filter: "blur(20px)" }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center overflow-hidden"
+          className="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center overflow-hidden px-6 text-center"
         >
           {/* Aesthetic Background Elements */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-text-primary/10 rounded-full blur-[100px]" />
 
           {/* Staggered Text Animation */}
-          <div className="relative overflow-hidden h-16 flex items-center justify-center">
+          <div className="relative overflow-hidden py-1 w-full flex items-center justify-center">
             <motion.div
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-              className="text-4xl md:text-5xl font-black text-text-primary tracking-tighter"
+              className="text-3xl sm:text-4xl md:text-5xl font-black text-text-primary tracking-tighter text-center leading-tight"
             >
-              Muhammad Restu Rahman Portfolio
+              Muhammad Restu Rahman
               <span className="text-thirdary">.</span>
             </motion.div>
           </div>
@@ -52,7 +52,7 @@ export default function PageLoader() {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-              className="text-sm font-bold tracking-[0.3em] uppercase text-text-secondary"
+              className="text-xs sm:text-sm font-bold tracking-[0.3em] uppercase text-text-secondary text-center"
             >
               Portfolio Loading
             </motion.div>
