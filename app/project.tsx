@@ -372,3 +372,4 @@ const projectList: ProjectItem[] = [
     demoLabel: "Lihat Portofolio",
   },
 ]
+

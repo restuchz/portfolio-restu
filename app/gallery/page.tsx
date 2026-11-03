@@ -8,15 +8,15 @@ import Link from "next/link"
 interface GalleryItem {
   id: string
   title: string
-  category: string // Misal: "Poster", "Branding", "UI/UX", "3D"
+  category: string
   imageUrl: string
-  aspectRatio?: string // Opsional: untuk variasi layout masonry
-  isVideo?: boolean //
+  aspectRatio?: string
+  isVideo?: boolean
+  fit?: "cover" | "contain" // contain = gambar tidak dipotong
 }
 
 // 2. Daftar Kategori Filter
-const CATEGORIES = ["All", "Logo", "T-Shirt Design", "Random Design", "Poster", "3D Logo", "Mockup",]
-
+const CATEGORIES = ["All", "Logo", "T-Shirt Design", "Random Design", "Poster", "3D Logo", "Mockup", "UI Design"]
 // 3. Data Galeri (Diisi dari karya Padlet Anda)
 export const galleryData: GalleryItem[] = [
   {
@@ -216,7 +216,65 @@ export const galleryData: GalleryItem[] = [
     imageUrl: "https://u1.padletusercontent.com/uploads/padlet-uploads-usc1/2295710792/44742c1236f9ea80ca89985e0024191b/0001_0250.mp4?token=QGzSW3EmZkfNaPEhXIzj0MYT9UuD91mEb9YPqHw_xHFeCPmgrLrRtL2ZAhmw8PdwwqJRVqiq-Esv5fBNL6ZnE8pzCxXa3Wc6iqL2ptM_siSLxF3K83lawhirN6CR2eIr-pmqBBZv7DodIgSzRfxm2WyUHX0YWYevaPrmsmpRPxk765VYfwfhXvIx8oZm5lNaaxo_0IAo_ND1swR004RIKN2bsZMKk6SYml6nBlfniREkv9_G8FchaP7QwE5yNXnK",
     isVideo: true,
   },
+    // --- KATEGORI: UI DESIGN ---
+  {
+    id: "ui-1",
+    title: "Music Playlist Web UI 1",
+    category: "UI Design",
+    fit: "contain",
+    imageUrl: "https://u1.padletusercontent.com/uploads/padlet-uploads/2295710792/686ab3e4585af29362573b78484dc9bd/web2.png?token=QGzSW3EmZkfNaPEhXIzj0MYT9UuD91mEb9YPqHw_xHFeCPmgrLrRtL2ZAhmw8PdwMNTLe1N_wbHl5BCzdRet8ZjBfSMZ2QSrTf7ix9QpskLHd6wFKgpKZu2tNd9bT1OJlUHBfKiqdUA20gOEJN7fV4QTDBbZ6oFMeOdQu5tTTqZdWq0S51nCUV-RinvEy_9jZ0Gl5DH1WUUhPWFrpRHWLsnszgAiZxY3dVB17EmrQXM=",
+  },
+  {
+    id: "ui-2",
+    title: "Music Playlist Web UI 2",
+    category: "UI Design",
+    fit: "contain",
+    imageUrl: "https://u1.padletusercontent.com/uploads/padlet-uploads/2295710792/c5e6a2cad3e49c827bc2fe5f5c09969c/web2_1.png?token=QGzSW3EmZkfNaPEhXIzj0MYT9UuD91mEb9YPqHw_xHFeCPmgrLrRtL2ZAhmw8PdwMNTLe1N_wbHl5BCzdRet8ZjBfSMZ2QSrTf7ix9QpskLHd6wFKgpKZu2tNd9bT1OJ9ffTi87eXFFdB4bbikSarHLEGSZJJPHARJjIvRAz3BjT9HO5CLV5L4MTWZ1KU0kl45R8aPSzd50upUwDm1Xco_g76hvKvq5x7_CMXOm4tto=",
+  },
+  {
+    id: "ui-3",
+    title: "Card UI Design",
+    category: "UI Design",
+    fit: "contain",
+    imageUrl: "https://u1.padletusercontent.com/uploads/padlet-uploads/2295710792/81e166011582d6e73bc9352a701a7e7a/web1.png?token=QGzSW3EmZkfNaPEhXIzj0MYT9UuD91mEb9YPqHw_xHFeCPmgrLrRtL2ZAhmw8PdwMNTLe1N_wbHl5BCzdRet8ZjBfSMZ2QSrTf7ix9QpskLHd6wFKgpKZu2tNd9bT1OJMpBMpQ7MrYCCw9fTKIGLuTytoAHtHdjE5GzBSHFfIf-p9tjj5M-1ZxErEt6cjOnnyyfpS93bhZ_rONY5V9LFJXZWy0ePdI52Jg7vu9HlXNw=",
+  },
+  {
+    id: "ui-4",
+    title: "WADAIKITA 1",
+    category: "UI Design",
+    fit: "contain",
+    imageUrl: "https://u1.padletusercontent.com/uploads/padlet-uploads/2295710792/c0e2c6515a014764caa17d0611b8c2de/wadai1.png?token=QGzSW3EmZkfNaPEhXIzj0MYT9UuD91mEb9YPqHw_xHFeCPmgrLrRtL2ZAhmw8PdwMNTLe1N_wbHl5BCzdRet8ZjBfSMZ2QSrTf7ix9QpskLHd6wFKgpKZu2tNd9bT1OJmEGMRYVPb1gsy_2TJon8kYjNB-k3JBwwpPtqO8RBxrevinH_EPMy5Pj2bFkZgIZQ_AQr9-D9EmqEosaYAb3SbNcAF7CJIXFCj36cMbVjzbY=",
+  },
+  {
+    id: "ui-5",
+    title: "WADAIKITA 2",
+    category: "UI Design",
+    fit: "contain",
+    imageUrl: "https://u1.padletusercontent.com/uploads/padlet-uploads/2295710792/b0d07f4fe4c32ccdc3d8e0298b7f7ad3/wadai2.png?expiry_token=5WaHZRdGG3LkUVQGy3SZ-zdRtq89aJeottSBaF_Hii8EGDVBG-vnLc5ZfL_2GiKosWMOCkHArMcc8LorETHcZ4xOgoJFgk6R3u62qS_NuBJtMXwU-BtJsyvdahjYeGh45i2Tx6YqjXj_UtzNydi4xWsEHufQngZsX8JuzAZhm09gE2Muf7898lveOt3Nm6lgLxawfqYSkVDrJNHWX0n0Ag==",
+  },
+  {
+    id: "ui-6",
+    title: "WADAIKITA 3",
+    category: "UI Design",
+    fit: "contain",
+    imageUrl: "https://u1.padletusercontent.com/uploads/padlet-uploads/2295710792/171812572ed48ceb67ad56a98bcb1e36/wadai3.png?token=QGzSW3EmZkfNaPEhXIzj0MYT9UuD91mEb9YPqHw_xHFeCPmgrLrRtL2ZAhmw8PdwMNTLe1N_wbHl5BCzdRet8ZjBfSMZ2QSrTf7ix9QpskLHd6wFKgpKZu2tNd9bT1OJFEpApqc7Dp3qP7jHg6AU5YGCr8YUf7RwXvjiHd366eFWnmPi5PgEX4kLrBTF5xi75uoQ_CNL7bmsHI3Wn1oKYSIQN7trqsU_kxrrHP8fOLM=",
+  },
+  {
+    id: "ui-7",
+    title: "WADAIKITA 4",
+    category: "UI Design",
+    fit: "contain",
+    imageUrl: "https://u1.padletusercontent.com/uploads/padlet-uploads/2295710792/04d6ba18f94bbc70441bd9bfdc7da35a/wadai4.png?token=QGzSW3EmZkfNaPEhXIzj0MYT9UuD91mEb9YPqHw_xHFeCPmgrLrRtL2ZAhmw8PdwMNTLe1N_wbHl5BCzdRet8ZjBfSMZ2QSrTf7ix9QpskLHd6wFKgpKZu2tNd9bT1OJJYKOM59IqTvNw_-qPjEmgGRdU7rsvUVrBdGZEB52TFgPOuYrl9FwZGMOpKbjoy10Rg8ffzM4T3sBt51stTzsPEZ0FT8LieUMY1Vga7dUzIg=",
+  },
+  {
+    id: "ui-8",
+    title: "WADAIKITA 5",
+    category: "UI Design",
+    fit: "contain",
+    imageUrl: "https://u1.padletusercontent.com/uploads/padlet-uploads/2295710792/eac8ba84ce1fe8571d7c77fda0a69b4f/wadai5.png?token=QGzSW3EmZkfNaPEhXIzj0MYT9UuD91mEb9YPqHw_xHFeCPmgrLrRtL2ZAhmw8PdwMNTLe1N_wbHl5BCzdRet8ZjBfSMZ2QSrTf7ix9QpskLHd6wFKgpKZu2tNd9bT1OJgB2bqDrcqb5BQtALh86RxWUO4MfxVzSlb9xMLFzNP9mHuZgNCGqIWK5bqhT4xb0DX7THXrf76fGKh4REA-HsYbgJldA0cN1h1p5ADUxvqKQ=",
+  },
 ]
+
 
 export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState("All")
@@ -330,10 +388,13 @@ export default function GalleryPage() {
                 />
             ) : (
                 <img
-                src={item.imageUrl}
-                alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                loading="lazy"
+                  src={item.imageUrl}
+                  alt={item.title}
+                  referrerPolicy="no-referrer"
+                  className={`w-full h-full transition-transform duration-700 ease-out group-hover:scale-105 ${
+                    item.fit === "contain" ? "object-contain p-3" : "object-cover"
+                  }`}
+                  loading="lazy"
                 />
             )}
 
